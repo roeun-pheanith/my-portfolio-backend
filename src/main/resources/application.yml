@@ -1,22 +1,63 @@
+#spring:
+#  application:
+#    name: portfolio
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/my_portfolio
+#    username: pheanith
+#    password: pheanith123
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    properties:
+#      hibernate: org.hibernate.dialect.PostgreSQLDialect
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: pheanithpheanith@gmail.com
+#    password: awvy asvw xxif lqhm
+#    properties:
+#      mail:
+#        smtp: 
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#file:
+#  upload-dir: ./uploads # Relative to your project root or absolute path
+#  download-uri: /api/files # Base URL for serving files
+#logging:
+#  level: 
+#    root: info
+#    com.nith.flex.portfolio: debug
+#    org.hibernate.sql: debug
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    org.springframework.web: DEBUG
+#
+#app:
+#  jwtSecret: weJYJHyKRtcz29J0GmSx1Zfh8HpjW2ZlZtEvJpWw1IU=
+#  jwtExpiration: 86400000
+
 spring:
   application:
     name: portfolio
   datasource:
-    url: jdbc:postgresql://localhost:5432/my_portfolio
-    username: pheanith
-    password: pheanith123
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: update # Set this to 'none' or 'validate' in production to prevent data loss!
+    show-sql: false # Set to false in production for performance
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: pheanithpheanith@gmail.com
-    password: awvy asvw xxif lqhm
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp: 
@@ -25,16 +66,27 @@ spring:
             enable: true
             required: true
 file:
-  upload-dir: ./uploads # Relative to your project root or absolute path
-  download-uri: /api/files # Base URL for serving files
+  upload-dir: /app/uploads # Use an absolute path or path relative to the deployed server
+  download-uri: /api/files
 logging:
-  level: 
+  level:
     root: info
-    com.nith.flex.portfolio: debug
-    org.hibernate.sql: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
-    org.springframework.web: DEBUG
+    com.nith.flex.portfolio: info
+    org.hibernate.sql: info
+    org.hibernate.type.descriptor.sql.BasicBinder: info
+    org.springframework.web: INFO
 
 app:
-  jwtSecret: weJYJHyKRtcz29J0GmSx1Zfh8HpjW2ZlZtEvJpWw1IU=
+  jwtSecret: ${JWT_SECRET}
   jwtExpiration: 86400000
+
+# configure environment variable on the paas
+#Key Value
+#DATABASE_URL  jdbc:postgresql://your-db-host:5432/your_db_name
+#DATABASE_USERNAME your_db_username
+#DATABASE_PASSWORD your_db_password
+#MAIL_HOST smtp.gmail.com
+#MAIL_PORT 587
+#MAIL_USERNAME your_email@gmail.com
+#MAIL_PASSWORD your_app_password
+#JWT_SECRET  a_long_and_secure_random_string
