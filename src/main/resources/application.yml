@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: portfolio
+  datasource:
+    url: jdbc:postgresql://localhost:5432/my_portfolio
+    username: pheanith
+    password: pheanith123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: pheanithpheanith@gmail.com
+    password: awvy asvw xxif lqhm
+    properties:
+      mail:
+        smtp: 
+          auth: true
+          starttls:
+            enable: true
+            required: true
+file:
+  upload-dir: ./uploads # Relative to your project root or absolute path
+  download-uri: /api/files # Base URL for serving files
+logging:
+  level: 
+    root: info
+    com.nith.flex.portfolio: debug
+    org.hibernate.sql: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.springframework.web: DEBUG
+
+app:
+  jwtSecret: weJYJHyKRtcz29J0GmSx1Zfh8HpjW2ZlZtEvJpWw1IU=
+  jwtExpiration: 86400000
