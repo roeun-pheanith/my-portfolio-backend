@@ -1,114 +1,79 @@
-# My Portfolio Backend
+# 🚀 My Portfolio Backend
 
-This is the backend service for my personal portfolio, built using **Java / Spring Boot**.
+## 📝 Description
 
----
+This repository contains the robust backend service for my personal portfolio website. It is designed to provide a secure and efficient **RESTful API** to manage, retrieve, and serve all necessary data for the corresponding frontend application, including projects, skills, contact messages, and more.
 
-## Table of Contents
-
-- [Features](#features)  
-- [Tech Stack](#tech-stack)  
-- [Getting Started](#getting-started)  
-  - [Prerequisites](#prerequisites)  
-  - [Installation](#installation)  
-  - [Running the Application](#running-the-application)  
-  - [Docker Setup](#docker-setup)  
-- [Configuration](#configuration)  
-- [API Endpoints](#api-endpoints)  
-- [Database](#database)  
-- [Testing](#testing)  
-- [Deployment](#deployment)  
-- [Contributing](#contributing)  
-- [License](#license)  
-- [Contact](#contact)
+The application is built using **Java** and the **Spring Boot** framework, following industry best practices for development and deployment.
 
 ---
 
-## Features
+## ✨ Features
 
-- CRUD APIs for portfolio data (projects, blogs, skills, etc.)  
-- RESTful design  
-- Configuration support  
-- Dockerized deployment  
-- (Optional) Authentication / Authorization — *add if relevant*
-
----
-
-## Tech Stack
-
-- Java  
-- Spring Boot  
-- Maven  
-- Docker  
-- (Optional) Spring Data JPA, Hibernate, etc.  
-- (Optional) H2 / MySQL / PostgreSQL (whichever DB you use)  
+* **RESTful API:** Clean, resource-oriented endpoints for all portfolio data.
+* **CRUD Operations:** Full Create, Read, Update, and Delete support for core resources (Projects, Experiences, Skills, etc.).
+* **Data Persistence:** Configured to integrate with a relational database (e.g., MySQL, PostgreSQL, or H2).
+* **Dockerized Deployment:** Includes a ready-to-use `Dockerfile` for easy containerization and production deployment.
+* **Secure Endpoints (Optional):** Placeholder for implementing authentication (e.g., JWT) to secure administrative routes.
 
 ---
 
-## Getting Started
+## 🛠️ Tech Stack
+
+The `my-portfolio-backend` is built with:
+
+* **Language:** Java
+* **Framework:** Spring Boot 3+
+* **Build Tool:** Apache Maven
+* **Data Access:** Spring Data JPA / Hibernate
+* **Containerization:** Docker
+* **Database:** (Specify your choice, e.g., PostgreSQL or MySQL)
+
+---
+
+## ⚙️ Getting Started
+
+Follow these steps to get a local copy up and running.
 
 ### Prerequisites
 
-Make sure you have installed:
+* **Java Development Kit (JDK):** Version 17+
+* **Apache Maven**
+* **Git**
+* **Docker** (If using containerized setup)
 
-- Java (version 17+ or the version your project uses)  
-- Maven  
-- (Optional) Docker & Docker Compose  
-- (Optional) A relational database (MySQL / PostgreSQL) if not using an embedded DB  
+### Installation & Setup
 
-### Installation
+1.  **Clone the Repository**
 
-1. Clone the repository:
+    ```bash
+    git clone [https://github.com/roeun-pheanith/my-portfolio-backend.git](https://github.com/roeun-pheanith/my-portfolio-backend.git)
+    cd my-portfolio-backend
+    ```
 
-   ```bash
-   git clone https://github.com/roeun-pheanith/my-portfolio-backend.git
-   cd my-portfolio-backend
-2. (Optional) configure your database settings in
-   src/main/resources/application.properties (or application.yml).
-3. Build the application:
-   ```bash
-   mvn clean install
-   
-Running the application:
-  You can run it via Meven
-   ```bash
-   mvn spring-boot:run
+2.  **Configure Database**
 
-  or run the generate JAR:
-  ```bash
-  java -jar target/my-portfolio-backend-0.0.1-SNAPSHOT.jar
+    Update your database connection details in the `src/main/resources/application.properties` file.
 
-  The server should start (by default) on port 8080 (unless overridden via config).
- Docker setup you already have the Dockerfile in the repo. To build and run with Docker:
+    ```properties
+    # Example Database Configuration
+    server.port=8080
+    spring.datasource.url=jdbc:mysql://localhost:3306/portfolio_db
+    spring.datasource.username=your_username
+    spring.datasource.password=your_password
+    spring.jpa.hibernate.ddl-auto=update 
+    ```
 
-  ```bash
-  # build the image
-  docker build -t my-portfolio-backend .
-  
-  # run the container
-  docker run -d -p 8080:8080 my-portfolio-backend
+3.  **Build the Application**
 
-  (Optional: use docker-compose if you have multiple services like database + backend.)
- Configuration
-  You can configure properties in application.properties or application.yml, for example:
-  ```bash
-  server.port=8080
-  spring.datasource.url=jdbc:mysql://localhost:3306/portfolio_db
-  spring.datasource.username=yourusername
-  spring.datasource.password=yourpassword
-  spring.jpa.hibernate.ddl-auto=update
+    Package the application into an executable JAR file:
+    ```bash
+    mvn clean install
+    ```
 
-  Add any other custom properties you use (JWT secrets, file storage, external APIs, etc.).
- API Endpoints
+### 🏃 Running the Application
 
-  HTTP Method	Path	Description
-  GET	/api/projects	Get all projects
-  GET	/api/projects/{id}	Get project by ID
-  POST	/api/projects	Create new project
-  PUT / PATCH	/api/projects/{id}	Update project
-  DELETE	/api/projects/{id}	Delete project
-  
-  (Add endpoints for blogs, skills, contacts, etc. as applicable.)
-  
-  Include sample request / response bodies if you like.
+#### Option 1: Run with Maven (Development)
 
+```bash
+mvn spring-boot:run
